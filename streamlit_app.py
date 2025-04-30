@@ -7,7 +7,7 @@ import random
 with open("scaler.pkl", "rb") as f:
     scaler = pickle.load(f)
 
-with open("rf_model.pkl", "rb") as f:
+with open("dt_model.pkl", "rb") as f:
     rf_model = pickle.load(f)
 
 # Title and image
