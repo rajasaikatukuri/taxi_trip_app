@@ -3,21 +3,18 @@ import numpy as np
 import pickle
 import random
 
-# Load models and scaler
+# Load scaler and Random Forest model
 with open("scaler.pkl", "rb") as f:
     scaler = pickle.load(f)
-
-with open("dt_model.pkl", "rb") as f:
-    dt_model = pickle.load(f)
 
 with open("rf_model.pkl", "rb") as f:
     rf_model = pickle.load(f)
 
 # Title and image
 st.image("taxi.jpg", width=400)
-st.title("🚕 NYC Taxi Tip Prediction App")
+st.title("🚕 NYC Taxi Tip Prediction App (Random Forest)")
 
-# Defaults (can be replaced when "Generate Random Trip" is clicked)
+# Default values
 default_inputs = {
     "trip_distance": 2.5,
     "passenger_count": 1,
@@ -70,9 +67,6 @@ payment_encoding = {
 selected_payment = st.radio("💳 Payment Method", payment_display, index=default_inputs["payment_type_encoding"] - 1)
 payment_type_encoding = payment_encoding[selected_payment]
 
-# Model choice
-model_type = st.radio("🧠 Select Model", options=["Decision Tree", "Random Forest"])
-
 # Prediction
 if st.button("🚀 Predict Tip"):
     features = np.array([[trip_distance, passenger_count, fare_amount, extra, mta_tax,
@@ -80,9 +74,5 @@ if st.button("🚀 Predict Tip"):
                           payment_type_encoding, duration]])
     scaled = scaler.transform(features)
 
-    if model_type == "Decision Tree":
-        prediction = dt_model.predict(scaled)[0]
-    else:
-        prediction = rf_model.predict(scaled)[0]
-
+    prediction = rf_model.predict(scaled)[0]
     st.success(f"🎯 Estimated Tip: **${prediction:.2f}**")
