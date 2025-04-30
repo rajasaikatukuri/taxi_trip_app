@@ -3,7 +3,6 @@ import numpy as np
 import pickle
 
 st.image("taxi.jpg", width=400)
-
 # Load models and scaler
 with open("scaler.pkl", "rb") as f:
     scaler = pickle.load(f)
