@@ -56,13 +56,10 @@ total_amount = fare_amount + extra + mta_tax + tolls_amount + improvement_surcha
 st.markdown(f"### 💵 Total Amount: `{total_amount:.2f} USD`")
 
 # Payment options
-payment_display = ["💵 Cash", "💳 Credit Card", "🏦 Debit Card", "🧾 Prepaid Card", "📱 Mobile Payment"]
+payment_display = ["💵 Cash", "💳 Credit Card"]
 payment_encoding = {
     "💵 Cash": 1,
-    "💳 Credit Card": 2,
-    "🏦 Debit Card": 3,
-    "🧾 Prepaid Card": 4,
-    "📱 Mobile Payment": 5
+    "💳 Credit Card": 2
 }
 selected_payment = st.radio("💳 Payment Method", payment_display, index=default_inputs["payment_type_encoding"] - 1)
 payment_type_encoding = payment_encoding[selected_payment]
