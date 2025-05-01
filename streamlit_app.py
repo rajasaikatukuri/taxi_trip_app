@@ -12,7 +12,7 @@ with open("dt_model.pkl", "rb") as f:
 
 # Title and image
 st.image("taxi.jpg", width=400)
-st.title("🚕 NYC Taxi Tip Prediction App (Random Forest)")
+st.title("🚕 NYC Taxi Tip Prediction App")
 
 # Default values
 default_inputs = {
